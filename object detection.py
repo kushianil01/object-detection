@@ -1,5 +1,16 @@
 import cv2
 import numpy as np
+from gtts import gTTS
+from playsound import playsound
+
+#this function is used to convert text to speech 
+def speech(text):
+    print(text)
+    language = "en"
+    output = gTTS(text=text, lang=language, slow=False)
+    sound_file = r"C:\Users\Sushma\Desktop\kushi 2024\sounds.mp3" #the file is stored in another directory in mp3 format.
+    output.save(sound_file)
+    playsound(sound_file)
 
 #importing the files yolov4.cfg,yolov4.weights and coco.names.
 config_path = r"C:\Users\Sushma\Downloads\yolov4.cfg"
@@ -78,7 +89,7 @@ if labels_detected:
     for label in labels_detected[1:]:
         stringh.append(f"a {label}")
 
-    print(", ".join(stringh))
+    speech(", ".join(stringh))
 else:
     print("No objects detected.")
 
